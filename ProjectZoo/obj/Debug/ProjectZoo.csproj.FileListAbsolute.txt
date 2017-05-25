@@ -1,0 +1,6 @@
+c:\users\tanusha\documents\BinaryAcademy\Projects\ProjectZoo\ProjectZoo\bin\Debug\ProjectZoo.exe.config
+c:\Users\Tanusha\Documents\BinaryAcademy\Projects\ProjectZoo\ProjectZoo\bin\Debug\ProjectZoo.exe
+c:\Users\Tanusha\Documents\BinaryAcademy\Projects\ProjectZoo\ProjectZoo\bin\Debug\ProjectZoo.pdb
+c:\Users\Tanusha\Documents\BinaryAcademy\Projects\ProjectZoo\ProjectZoo\obj\Debug\ProjectZoo.exe
+c:\Users\Tanusha\Documents\BinaryAcademy\Projects\ProjectZoo\ProjectZoo\obj\Debug\ProjectZoo.pdb
+C:\Users\Tanusha\documents\BinaryAcademy\Projects\ProjectZoo\ProjectZoo\obj\Debug\ProjectZoo.csprojResolveAssemblyReference.cache
