@@ -55,6 +55,7 @@
     <Compile Include="IZooManager.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatisticsManager.cs" />
     <Compile Include="Zoo.cs" />
     <Compile Include="ZooManager.cs" />
   </ItemGroup>

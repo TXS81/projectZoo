@@ -8,12 +8,12 @@ namespace ProjectZoo
 	{
 		private IZoo _zoo;
 		private IAnimalFactory _factory;
-
+		#region IZooManager
 		public ZooManager()
 		{
 			this._zoo = new Zoo();
 			this._factory = new AnimalFactory();
-
+			AutoSetter();
 		}
 		public ZooManager(IZoo zoo, IAnimalFactory factory)
 		{
@@ -30,7 +30,7 @@ namespace ProjectZoo
 			{
 				foreach (var animal in collectionOfAnimals)
 				{
-					result += String.Format("\n\tName: {1}\n\tSpecies: {0}\n\tStatus: {3}\t\tHealth: {2}\n\n", animal.GetType().Name, animal.Name, animal.Health, animal.Status);
+					result += String.Format("\n\tName: {1}\n\tSpecies: {0}\n\tStatus: {3}\t\tHealth: {2}\n", animal.GetType().Name, animal.Name, animal.Health, animal.Status);
 				}
 
 			}
@@ -50,7 +50,7 @@ namespace ProjectZoo
 				Animal currAnimal = CatchAnimalByName(name, collectionOfAnimals);
 				if (currAnimal != null)
 				{
-					result = String.Format("\n\tName: {1}\n\tSpecies: {0}\n\tStatus: {3}\t\tHealth: {2}\n\n", currAnimal.GetType().Name, currAnimal.Name, currAnimal.Health, currAnimal.Status);
+					result = String.Format("\n\tName: {1}\n\tSpecies: {0}\n\tStatus: {3}\t\tHealth: {2}\n", currAnimal.GetType().Name, currAnimal.Name, currAnimal.Health, currAnimal.Status);
 				}
 				else
 				{
@@ -155,6 +155,142 @@ namespace ProjectZoo
 			else
 			{
 				return collectionOfAnimals.Find(a => a.Name == name);
+			}
+		}
+
+		#endregion
+
+		#region Showing statistics
+
+		public string ShowGroupedAnimals()
+		{
+			try
+			{
+				return StatisticsManager.ShowAllByGroup(_zoo.GetAllAnimals());
+			}
+			catch (Exception e)
+			{
+
+				return e.Message;
+			}
+		}
+		public string ShowAnimalWithStatus(State state)
+		{
+			try
+			{
+				return StatisticsManager.ShowAnimalWithStatus(_zoo.GetAllAnimals(), state);
+			}
+			catch (Exception e)
+			{
+
+				return e.Message;
+			}
+		}
+		public string ShowIllAnimals(State state, string type)
+		{
+			try
+			{
+				return StatisticsManager.ShowSomeAnimal(_zoo.GetAllAnimals(), state, type);
+			}
+			catch (Exception e)
+			{
+				return e.Message;
+			}
+		}
+		public string ShowAnimalWithName(string name, string type)
+		{
+			try
+			{
+				return StatisticsManager.ShowAnimalWithName(_zoo.GetAllAnimals(), name, type);
+			}
+			catch (Exception e)
+			{
+
+				return e.Message;
+			}
+		}
+		public string ShowAllHungryAnimals()
+		{
+			try
+			{
+				return StatisticsManager.ShowAllNamesWithState(_zoo.GetAllAnimals());
+			}
+			catch (Exception e)
+			{
+
+				return e.Message;
+			}
+		}
+		public string ShowHealthiestInGroup()
+		{
+			try
+			{
+				return StatisticsManager.ShowHealthiestAnimals(_zoo.GetAllAnimals());
+			}
+			catch (Exception e)
+			{
+
+				return e.Message;
+			}
+		}
+		public string ShowDeadAnimals()
+		{
+			try
+			{
+				return StatisticsManager.ShowNumberOfDead(_zoo.GetAllAnimals());
+			}
+			catch (Exception e)
+			{
+				return e.Message;
+			}
+		}
+		public string ShowAnimalsWithHealth(int edge = 3, string firstAnimal = "Wolf", string secondAnimal = "Bear")
+		{
+			try
+			{
+				return StatisticsManager.ShowAnimalsWithHealth(_zoo.GetAllAnimals(), edge, firstAnimal, secondAnimal);
+			}
+			catch (Exception e)
+			{
+				return e.Message;
+			}
+		}
+		public string ShowAnimalsWithMinMax()
+		{
+			try
+			{
+				return StatisticsManager.ShowAnimalWithMinMaxHealth(_zoo.GetAllAnimals());
+			}
+			catch (Exception e)
+			{
+				return e.Message;
+			}
+		}
+		public string ShowAverageHealth()
+		{
+			try
+			{
+				return String.Format("\n\tAverage rank of health: {0}", StatisticsManager.AverageHealth(_zoo.GetAllAnimals()));
+			}
+			catch (Exception e)
+			{
+
+				return e.Message;
+			}
+		}
+		#endregion
+		private void AutoSetter(int number = 60)
+		{
+			var rnd = new Random();
+			string name = "ND";
+			for (int i = 0; i < number; i++)
+			{
+				int species = rnd.Next(1, 7);
+				Species s = (Species)_factory.GetSpecies(species.ToString());
+
+				name = s.ToString() + " " + i;
+				AddAnimal(name, s);
+
 			}
 		}
 
